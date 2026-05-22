@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Daily Todo</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+    <!-- Header / Briefing -->
+    <header class="briefing">
+      <div class="briefing-date" id="briefingDate"></div>
+      <h1 class="briefing-title">오늘의 할일 브리핑</h1>
+      <p class="briefing-summary" id="briefingSummary"></p>
+    </header>
+
+    <!-- Stats -->
+    <section class="stats">
+      <div class="stat-card">
+        <span class="stat-value" id="totalCompleted">0</span>
+        <span class="stat-label">전체 완료</span>
+      </div>
+      <div class="stat-card accent">
+        <span class="stat-value" id="todayCompleted">0</span>
+        <span class="stat-label">오늘 완료</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-value" id="remaining">0</span>
+        <span class="stat-label">남은 할일</span>
+      </div>
+    </section>
+
+    <!-- Goal Progress -->
+    <section class="goal-section">
+      <div class="goal-header">
+        <span class="goal-label">목표 달성률</span>
+        <div class="goal-controls">
+          <label class="goal-edit-label">목표:
+            <input type="number" id="goalInput" min="1" max="999" value="10" />
+            개
+          </label>
+        </div>
+        <span class="goal-percent" id="goalPercent">0%</span>
+      </div>
+      <div class="progress-bar-track">
+        <div class="progress-bar-fill" id="progressFill"></div>
+      </div>
+      <div class="goal-detail" id="goalDetail"></div>
+    </section>
+
+    <!-- Add Todo -->
+    <section class="add-section">
+      <input
+        type="text"
+        id="todoInput"
+        placeholder="새 할일을 입력하세요..."
+        maxlength="100"
+      />
+      <button id="addBtn">추가</button>
+    </section>
+
+    <!-- Todo List -->
+    <section class="todo-list-section">
+      <div id="todoList" class="todo-list"></div>
+      <div id="emptyState" class="empty-state hidden">
+        <span>🎉</span>
+        <p>오늘 할일을 모두 완료했어요!</p>
+      </div>
+    </section>
+
+    <!-- Completed History -->
+    <section class="history-section">
+      <button class="history-toggle" id="historyToggle">
+        완료된 항목 보기 <span id="historyCount"></span>
+      </button>
+      <div id="historyList" class="history-list hidden"></div>
+    </section>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
