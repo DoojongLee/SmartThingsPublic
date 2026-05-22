@@ -1,8 +1,9 @@
-const CACHE = 'daily-todo-v1';
+const CACHE = 'daily-todo-v2';
 const ASSETS = [
   './index.html',
   './style.css',
   './app.js',
+  './calendar.js',
   './manifest.json',
   './icons/icon-192.png',
   './icons/icon-512.png',

@@ -17,6 +17,7 @@
 </head>
 <body>
   <div class="app">
+
     <!-- Header / Briefing -->
     <header class="briefing">
       <div class="briefing-date" id="briefingDate"></div>
@@ -58,14 +59,56 @@
       <div class="goal-detail" id="goalDetail"></div>
     </section>
 
+    <!-- Calendar sync bar -->
+    <section class="cal-section">
+      <div class="cal-header">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="1" y="2" width="14" height="13" rx="2"/>
+          <line x1="1" y1="6" x2="15" y2="6"/>
+          <line x1="5" y1="1" x2="5" y2="4"/>
+          <line x1="11" y1="1" x2="11" y2="4"/>
+        </svg>
+        <span>캘린더 연동</span>
+        <span class="cal-badge">Apple / Google</span>
+      </div>
+      <div class="cal-actions">
+        <button id="exportAllBtn" class="cal-btn export">
+          <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="6.5" y1="1" x2="6.5" y2="9"/><polyline points="3,6 6.5,9 10,6"/>
+            <line x1="1" y1="12" x2="12" y2="12"/>
+          </svg>
+          전체 내보내기 (.ics)
+        </button>
+        <button id="importBtn" class="cal-btn import">
+          <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="6.5" y1="9" x2="6.5" y2="1"/><polyline points="3,4 6.5,1 10,4"/>
+            <line x1="1" y1="12" x2="12" y2="12"/>
+          </svg>
+          캘린더에서 가져오기
+        </button>
+        <input type="file" id="importIcsInput" accept=".ics" class="hidden" />
+      </div>
+      <p class="cal-hint">
+        📲 <strong>내보내기</strong>: ICS 파일 다운로드 → Apple/Google Calendar에서 열기<br>
+        📥 <strong>가져오기</strong>: Calendar 앱에서 ICS 내보낸 후 업로드
+      </p>
+    </section>
+
     <!-- Add Todo -->
     <section class="add-section">
-      <input
-        type="text"
-        id="todoInput"
-        placeholder="새 할일을 입력하세요..."
-        maxlength="100"
-      />
+      <div class="add-inputs">
+        <input
+          type="text"
+          id="todoInput"
+          placeholder="새 할일을 입력하세요..."
+          maxlength="100"
+        />
+        <input
+          type="date"
+          id="dueDateInput"
+          title="마감일 (선택)"
+        />
+      </div>
       <button id="addBtn">추가</button>
     </section>
 
@@ -85,9 +128,13 @@
       </button>
       <div id="historyList" class="history-list hidden"></div>
     </section>
+
   </div>
 
-  <script src="app.js"></script>
+  <!-- Toast -->
+  <div id="importToast" class="toast"></div>
+
+  <script type="module" src="app.js"></script>
   <script>
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('./sw.js');
