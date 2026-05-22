@@ -20,11 +20,33 @@
 body {
   background: var(--bg);
   color: var(--text);
-  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  font-family: -apple-system, 'Segoe UI', system-ui, sans-serif;
   min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   justify-content: center;
   padding: 24px 16px 64px;
+  /* iPad safe area */
+  padding-top: max(24px, env(safe-area-inset-top));
+  padding-bottom: max(64px, env(safe-area-inset-bottom));
+  padding-left: max(16px, env(safe-area-inset-left));
+  padding-right: max(16px, env(safe-area-inset-right));
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* iPad 가로/세로 반응형 */
+@media (min-width: 768px) {
+  .app { max-width: 680px; }
+  .briefing { padding: 36px 32px; }
+  .briefing-title { font-size: 1.7rem; }
+  .stat-value { font-size: 2.4rem; }
+  .add-section input, .add-section button { font-size: 1.05rem; padding: 16px 20px; }
+  .todo-item { padding: 18px 22px; }
+  .todo-text { font-size: 1.05rem; }
+}
+
+@media (min-width: 1024px) {
+  .app { max-width: 760px; }
 }
 
 .app {
